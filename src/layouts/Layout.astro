@@ -19,6 +19,8 @@ import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { pathsEqual, url } from "../utils/url-utils";
 import "katex/dist/katex.css";
+// Custom background image - comment out to use default theme color instead
+import dragonBg from "../assets/images/banner3.jpg";
 
 interface Props {
 	title?: string;
@@ -73,9 +75,16 @@ const bannerOffset =
 ---
 
 <!DOCTYPE html>
+<!-- Custom background image enabled - To use default theme color instead, comment out the html tag below and uncomment the one after -->
+<html lang={siteLang} class="transition text-[14px] md:text-[16px] bg-cover bg-fixed bg-center min-h-screen"
+	  style={`background-image: url(${dragonBg.src});`}
+	  data-overlayscrollbars-initialize
+>
+<!-- Default theme color background (uncomment to use):
 <html lang={siteLang} class="bg-[var(--page-bg)] transition text-[14px] md:text-[16px]"
 	  data-overlayscrollbars-initialize
 >
+-->
 	<head>
 
 		<title>{pageTitle}</title>
@@ -148,7 +157,8 @@ const bannerOffset =
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
 
 	</head>
-	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
+	<body class="min-h-screen transition" 
+		  class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
