@@ -176,6 +176,22 @@ const bannerOffset =
 }}>
 @tailwind components;
 @layer components {
+	/* Blur effect for background image */
+	html::before {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		background-image: inherit;
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		filter: blur(3px);
+	}
+	
 	.enable-banner.is-home #banner-wrapper {
 		@apply h-[var(--banner-height-home)] translate-y-[var(--banner-height-extend)]
 	}
