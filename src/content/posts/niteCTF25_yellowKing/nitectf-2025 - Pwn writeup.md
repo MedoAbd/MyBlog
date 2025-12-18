@@ -174,6 +174,7 @@ The vulnerability is clear, the program allows us to input floats that are then 
 
 We can do that using this shellcode:
 ```python
+
 shellcode = asm('''
     # open("flag", O_RDONLY, 0)
     xor rax, rax
