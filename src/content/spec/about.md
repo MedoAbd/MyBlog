@@ -1,9 +1,9 @@
-# About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+# About Me
 
-::github{repo="saicaca/fuwari"}
+I'm a cyber security student and CTF player specializing in binary exploitation. I enjoy anything related to low level security.<br>
+This is my personal blog where I share CTF writeups, exploitation techniques, and notes from my learning and research.
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+# Contact
+
+- **Discord:** medabd99
+- **[Github](https://github.com/MedoAbd)**
