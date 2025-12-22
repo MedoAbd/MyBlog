@@ -3,7 +3,7 @@ title: HTB University CTF 2025 - Pwn Writeup
 published: 2025-12-20
 description: 'Writeup for the pwn challenges from HackTheBox University CTF 2025'
 image: './imgs/uni-logo.jpg'
-tags: [pwn,ctf,fsop,format_string]
+tags: [Pwn,CTF,FSOP,format_string,UAF]
 category: 'CTF Writeups'
 draft: false 
 lang: ''
