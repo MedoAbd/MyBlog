@@ -4,7 +4,7 @@ const robotsTxt = `
 User-agent: *
 Disallow: /_astro/
 
-Sitemap: ${new URL("sitemap-index.xml", import.meta.env.SITE).href}
+Sitemap: https://medoabd.github.io/MyBlog/sitemap-index.xml
 `.trim();
 
 export const GET: APIRoute = () => {
