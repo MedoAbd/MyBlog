@@ -1,5 +1,5 @@
 ---
-title: nitectf-2025 - Pwn writeups
+title: nitectf-2025 - Pwn writeup
 published: 2025-12-16
 description: 'Writeup for the first two pwn challenges from nitectf-2025'
 image: './imgs/nitectf-logo.png'

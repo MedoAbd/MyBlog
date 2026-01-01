@@ -92,6 +92,9 @@ const bannerOffset =
 		<meta charset="UTF-8" />
 		<meta name="description" content={description || pageTitle}>
 		<meta name="author" content={profileConfig.name}>
+		<meta name="robots" content="index, follow">
+		<meta name="googlebot" content="index, follow">
+		<link rel="canonical" href={Astro.url}>
 
 		<meta property="og:site_name" content={siteConfig.title}>
 		<meta property="og:url" content={Astro.url}>
